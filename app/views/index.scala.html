@@ -1,7 +1,19 @@
-@(message: String)
+@(posts: List[Post], currentMissionTime: Long)
 
-@main("Welcome to Play") {
+@import helper._
 
-    @play20.welcome(message)
-
+@main("Apollo 13 in Real Time") {
+	<script src="@routes.Assets.at("javascripts/StreamUpdater.js")"></script>
+    <h1>Apollo 13 in Real Time</h1>
+    <h2>Current mission time is T+<span id="currentMissionTime"></span></h2>
+    <strong>The Stream:</strong>
+    <ul id="postStream" data-init-time="@currentMissionTime">
+    	@posts.map { post =>
+    		<li id="post_@post.timecode">
+    			<div><b>@post.speaker</b></div>
+    			<div>@post.body</div>
+    		</li>
+    	}
+    </ul>
+    <h2>Over...</h2>
 }

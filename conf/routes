@@ -2,8 +2,23 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-# Home page
+# Home page with feed
 GET     /                           controllers.Application.index
+
+# Main Stream Page
+GET		/stream 					controllers.Application.stream
+
+# JSON of stream data
+GET		/streambetween/:start/:end	controllers.Application.streamBetween(start: Long, end: Long)
+
+#About Page
+GET		/about						controllers.Application.about
+
+#Specific Post id
+GET		/post/:timecode 			controllers.Application.post(timecode: Long)
+
+#TEMP! Start a new mission
+GET		/startMission				controllers.Application.startMission
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
