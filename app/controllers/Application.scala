@@ -9,6 +9,7 @@ import play.api.db._
 import play.api.libs.json._
 
 object Application extends Controller {
+  val speakerMap = Map("CDR" -> "Commander Jim Lovell","CMP" -> "CMP Jack Swigert","LMP" -> "LMP Fred Haise","CC" -> "Capcom");
 
   def index = Action {
     Redirect(routes.Application.stream)
@@ -16,7 +17,15 @@ object Application extends Controller {
 
   def stream = Action {
   	val currentMissionTime = controllers.Helpers.getMissionTimestamp(Global.mission_start)
-  	Ok(views.html.index(Post.between(0,currentMissionTime).reverse, currentMissionTime))
+    val posts = Post.between(0,currentMissionTime).reverse
+
+  	Ok(views.html.disaster(speakersToNames(posts), currentMissionTime))
+  }
+
+  def speakersToNames(posts: List[Post]) = {
+    
+    def name(post:Post) = { Post(post.timecode, speakerMap(post.speaker), post.body); }
+    posts.map(post => name(post));
   }
 
   def postToJson(post: Post) = {
@@ -28,7 +37,8 @@ object Application extends Controller {
 
   def streamBetween(start: Long, end:Long) = Action {
   	val posts = Post.between(start,end)
-  	val jsonPosts = posts.map(post => postToJson(post))
+    val namedPosts = speakersToNames(posts);
+  	val jsonPosts = namedPosts.map(post => postToJson(post))
   	Ok(Json.toJson(jsonPosts))
   }
 

@@ -1,0 +1,41 @@
+@(posts: List[Post], currentMissionTime: Long)
+@import helper._
+
+@main("Apollo 13 Redux", "stylesheets/disaster.css") {
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+	<script src="@routes.Assets.at("javascripts/StreamUpdater.js")"></script>
+    <script src="@routes.Assets.at("javascripts/ParlaxEngine.js")"></script>
+    <div id='centeredContainter'>
+        <div id='textLayer' class='layer' data-altitude='0.01'>
+            <div id='leftNav'>
+                <div id='logo'><img src="@routes.Assets.at("images/logo.png")" /></div> 
+                <ul>
+                    <li style='font-weight:400;'>> <a href='#'>Realtime Stream</a></li>
+                    <li>> <a href='#'>KeyEvents</a></li>
+                    <li>> <a href='#'>About</a></li>
+                </ul>
+            </div>
+            <div id='feedContent'>
+                <div id='feedHeader'>
+                    <div id='currentMissionTime'>T+00:00:00</div><div id='feedSource'>Apollo 13 Air/Ground Loop</div>
+                    <div id='headerRule'></div>
+                </div>
+                <div id='feed'>
+                    <ul id="postStream" data-init-time="@currentMissionTime">
+                        @posts.map { post =>
+                            <li id="post_@post.timecode">
+                                <div class='speaker'>@post.speaker</div>
+                                <div class='message'>@post.body</div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div id='footer'>
+            </div>
+        </div>
+        <div id='shipLayer' class='layer' data-altitude='0.02'>
+            <div id='ship'></div>
+        </div>
+    </div>
+}

@@ -1,0 +1,174 @@
+@font-face {
+    font-family: 'franklin_gothic_fsdemi';
+    src: url('../fonts/FranklinGothic-Demi-webfont.eot');
+    src: url('../fonts/FranklinGothic-Demi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FranklinGothic-Demi-webfont.woff') format('woff'),
+         url('../fonts/FranklinGothic-Demi-webfont.ttf') format('truetype'),
+         url('../fonts/FranklinGothic-Demi-webfont.svg#franklin_gothic_fsdemi') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'franklin_gothic_fsbook';
+    src: url('../fonts/FranklinGothic-Book-webfont.eot');
+    src: url('../fonts/FranklinGothic-Book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/FranklinGothic-Book-webfont.woff') format('woff'),
+         url('../fonts/FranklinGothic-Book-webfont.ttf') format('truetype'),
+         url('../fonts/FranklinGothic-Book-webfont.svg#franklin_gothic_fsbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	background-image: url('../images/disaster_background_stars.png');
+	background-repeat: repeat;
+	background-color: #111;
+	height: 100%;
+}
+
+#centeredContainter {
+	position: relative;
+	width: 70%;
+	height: 500px;
+	max-width: 768px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+
+#textLayer {
+	position: absolute;
+	display: table;
+	left:0px;
+	top:0px;
+	height: 100%;
+	min-width: 650px;
+}
+
+#shipLayer {
+	position: absolute;
+	left:0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+}
+
+#leftNav {
+	vertical-align: top;
+	display: table-cell;
+	width: 216px;
+}
+
+#logo {
+	opacity: 0.5;
+}
+
+#leftNav ul {
+	opacity: 0.3;
+	margin-top: 30px;
+}
+
+#leftNav li, a {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	color: #EEE;
+	text-decoration: none;
+	letter-spacing: 0.04em;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+#leftNav a:hover{
+	text-decoration: underline;
+}
+
+#feedContent {
+	vertical-align: top;
+	display: table-cell;
+	padding-left: 100px;
+	width: 100%;
+}
+
+#feedHeader{
+	width: 100%;
+	color: #fff;
+	text-align: justify;
+}
+
+#currentMissionTime {
+	float: left;
+	font-family: 'franklin_gothic_fsbook';
+	margin-bottom: 3px;
+	margin-left: 5px;
+	font-size: 14px;
+	letter-spacing: 0.2em;
+	color: #ddd;
+}
+
+#feedSource {
+	float: right;
+	font-family: 'franklin_gothic_fsbook';
+	margin-bottom: 3px;
+	margin-top: 2px;
+	margin-right: 5px;
+	font-size: 13px;
+	color: #ddd;
+}
+
+#headerRule {
+	clear:both;
+	height: 1px;
+	width: 100%;
+	background-color: #ddd;
+}
+
+#feed {
+	color: #FFF;
+	overflow: hidden;
+	height: 600px;
+	margin-left: 5px;
+}
+
+#ship {
+	position: absolute;
+	left: 40%;
+	top: 40%;
+	width: 234px;
+	height: 134px;
+	z-index: 9999;
+	background-image: url('../images/disaster_ship.png');
+}
+
+.speaker {
+	font-family: 'franklin_gothic_fsdemi';
+	font-size: 14px;
+	margin-bottom: 2px;
+	letter-spacing: 2px;
+}
+
+.message {
+	/*font-family: 'franklin_gothic_fsbook';*/
+	font-family: 'Raleway', sans-serif;
+	font-weight: 100;
+	font-size: 16px;
+	letter-spacing: 0.09em;
+	line-height: 30px;
+	opacity: 0.8;
+}
+
+body {
+	margin-top: 40px;
+}
+
+ul {
+	margin-left: 0;
+	padding-left: 0;
+}
+
+li {
+	list-style: none;
+	margin-bottom: 15px;
+	opacity: 0.9;
+}
+
