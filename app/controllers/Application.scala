@@ -10,6 +10,13 @@ import play.api.libs.json._
 
 object Application extends Controller {
   val speakerMap = Map("CDR" -> "Commander Jim Lovell","CMP" -> "CMP Jack Swigert","LMP" -> "LMP Fred Haise","CC" -> "Capcom");
+  val eventMap = Map(
+    "launch" -> 0,
+    "lem_docking" -> 11800,
+    "disaster" -> 201305,
+    "thebox" -> 293559,
+    "correction" -> 501062,
+    "reentry" -> 513050);
 
   def index = Action {
     Redirect(routes.Application.stream)
@@ -23,7 +30,6 @@ object Application extends Controller {
   }
 
   def speakersToNames(posts: List[Post]) = {
-    
     def name(post:Post) = { Post(post.timecode, speakerMap(post.speaker), post.body); }
     posts.map(post => name(post));
   }
@@ -40,6 +46,11 @@ object Application extends Controller {
     val namedPosts = speakersToNames(posts);
   	val jsonPosts = namedPosts.map(post => postToJson(post))
   	Ok(Json.toJson(jsonPosts))
+  }
+
+  def event(event:String) = Action {
+    val posts = Post.between(0,eventMap(event)).reverse
+    Ok(views.html.disaster(speakersToNames(posts), eventMap(event)))
   }
 
   def about = TODO

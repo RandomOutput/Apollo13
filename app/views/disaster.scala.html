@@ -9,15 +9,23 @@
         <div id='textLayer' class='layer' data-altitude='0.01'>
             <div id='leftNav'>
                 <div id='logo'><img src="@routes.Assets.at("images/logo.png")" /></div> 
-                <ul>
-                    <li style='font-weight:400;'>> <a href='#'>Realtime Stream</a></li>
-                    <li>> <a href='#'>KeyEvents</a></li>
+                <ul id='mainlinks'>
+                    <li>> <a href='@routes.Application.stream'>Realtime Stream</a></li>
+                    <li>> KeyEvents</li>
+                    <ul id='events'>
+                        <li><a href="@routes.Application.event("launch")">Launch</a></li>
+                        <li><a href="@routes.Application.event("lem_docking")">LEM Docking</a></li>
+                        <li><a href="@routes.Application.event("disaster")">Disaster</a></li>
+                        <li><a href="@routes.Application.event("thebox")">CO2 Box</a></li>
+                        <li><a href="@routes.Application.event("correction")">Course Correction</a></li>
+                        <li><a href="@routes.Application.event("reentry")">Reentry</a></li>
+                    </ul>
                     <li>> <a href='#'>About</a></li>
                 </ul>
             </div>
             <div id='feedContent'>
                 <div id='feedHeader'>
-                    <div id='currentMissionTime'>T+00:00:00</div><div id='feedSource'>Apollo 13 Air/Ground Loop</div>
+                    <div id='currentMissionTime'>T+00:00:00</div><div id='feedSource'>Live: Air-Ground </div>
                     <div id='headerRule'></div>
                 </div>
                 <div id='feed'>

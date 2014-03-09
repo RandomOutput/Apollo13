@@ -52,6 +52,7 @@ body {
 	top:0px;
 	width: 100%;
 	height: 100%;
+	pointer-events:none;
 }
 
 #leftNav {
@@ -64,7 +65,7 @@ body {
 	opacity: 0.5;
 }
 
-#leftNav ul {
+#mainlinks {
 	opacity: 0.3;
 	margin-top: 30px;
 }
@@ -81,6 +82,17 @@ body {
 
 #leftNav a:hover{
 	text-decoration: underline;
+}
+
+#events {
+	font-size: 10px;
+	margin-top: -20px;
+}
+
+#events li {
+	margin-left: 20px;
+	margin-bottom: 10px;
+	font-size: 10px;
 }
 
 #feedContent {
@@ -132,10 +144,10 @@ body {
 
 #ship {
 	position: absolute;
-	left: 40%;
+	left: 25%;
 	top: 40%;
-	width: 234px;
-	height: 134px;
+	width: 355px;
+	height: 159px;
 	z-index: 9999;
 	background-image: url('../images/disaster_ship.png');
 }

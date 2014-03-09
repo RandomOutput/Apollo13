@@ -14,8 +14,7 @@ GET		/streambetween/:start/:end	controllers.Application.streamBetween(start: Lon
 #About Page
 GET		/about						controllers.Application.about
 
-#Specific Post id
-GET		/post/:timecode 			controllers.Application.post(timecode: Long)
+GET		/stream/:eventName 			controllers.Application.event(eventName: String)
 
 #TEMP! Start a new mission
 GET		/startMission				controllers.Application.startMission
