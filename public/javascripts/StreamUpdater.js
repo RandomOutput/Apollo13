@@ -1,34 +1,35 @@
 $(document).ready(function() {
-	var firstUpdate = true;
-	var currTime = Math.round(new Date().getTime() / 1000);
-	var lastTime = currTime;
-	var missionTime = $('#postStream').data('init-time');
-	var url_root = 'http://localhost:9000'
-	var width = $(window).width();
-	var height = $(window).height();
-	var docHeight = $(document).height();
+	var _firstUpdate = true;
+	var _currTime = Math.round(new Date().getTime() / 1000);
+	var _lastTime = _currTime;
+	var _missionTime = $('#postStream').data('init-time');
+	var _url_root = 'http://localhost:9000'
+	var _width = $(window).width();
+	var _height = $(window).height();
+	var _docHeight = $(document).height();
 
-	$(window).resize(function(){
-		width = $(window).width();
-		height = $(window).height();
-	});
-
-	var lastUpdateMissionTime = 0;
 	var defaultUpdateInterval = 60; //seconds
 	var defaultUpdateMargin = 10; //seconds
 	var nextUpdateMissionTime = 0;
 	var postQueue = []
 
+	$(window).resize(function(){
+		_width = $(window)._width();
+		_height = $(window)._height();
+	});
+
+	
+
 	function updateQueue() {
 		console.log("updateQueue");
 		var urlString = ""
-		if(firstUpdate) {
-			urlString = url_root+'/streambefore/' + 9 + '/' + missionTime;
-			firstUpdate = false;
+		if(_firstUpdate) {
+			urlString = _url_root+'/streambefore/' + 9 + '/' + _missionTime;
+			_firstUpdate = false;
 		}
 		else {
-			urlString = url_root+'/streambetween/' + missionTime + '/' + (missionTime + defaultUpdateInterval);
-			nextUpdateMissionTime = missionTime + defaultUpdateInterval - defaultUpdateMargin;
+			urlString = _url_root+'/streambetween/' + _missionTime + '/' + (_missionTime + defaultUpdateInterval);
+			nextUpdateMissionTime = _missionTime + defaultUpdateInterval - defaultUpdateMargin;
 		}
 		
 		console.log(urlString);
@@ -51,14 +52,17 @@ $(document).ready(function() {
 		updateMissionClock();
 
 		//Ask the server for more messages
-		if( missionTime >= nextUpdateMissionTime ) { updateQueue(); }
+		if( _missionTime >= nextUpdateMissionTime ) { updateQueue(); }
 		
 		//Add new messages to the stream
-		while( postQueue.length > 0 && postQueue[postQueue.length - 1].timecode <= missionTime ) { 
+		while( postQueue.length > 0 && postQueue[postQueue.length - 1].timecode <= _missionTime ) { 
 			var post = postQueue.pop();
 			appendMessagesToList(post);
+			formatStream();
 			pageUpdated = true;
 		}
+
+		
 
 		//Remove old messages from the stream
 		if(pageUpdated) { 
@@ -69,8 +73,6 @@ $(document).ready(function() {
 	var appendMessagesToList = function(post){
 		$('#postStream').prepend(
 			"<li id=post_" + post.timecode + "><div class='speaker'>" + post.speaker + "</div><div class='message'>" + post.body + "</div></li>");
-		$('#post_'+post.timecode).hide().slideDown(100);
-		formatStream();
 	}
 
 	function updateMissionClock()
@@ -82,11 +84,12 @@ $(document).ready(function() {
 		var deltaTime = 0;
 		var tempTime = 0;
 
-		currTime = Math.round(new Date().getTime() / 1000);
-		deltaTime = currTime - lastTime;
-		missionTime += deltaTime;
-		lastTime = currTime;
-		tempTime = missionTime;
+		_currTime = Math.round(new Date().getTime() / 1000);
+		deltaTime = _currTime - _lastTime;
+		_missionTime += deltaTime;
+		_lastTime = _currTime;
+		
+		tempTime = _missionTime;
 
 		//Update the clock vars
 		days = ""+Math.floor(tempTime / (24*60*60));
@@ -107,8 +110,8 @@ $(document).ready(function() {
 
 	var formatStream = function(){
 		$('#postStream').children().each(function(){
-			var dist = height - $(this).offset().top;
-			dist = dist/height;
+			var dist = _height - $(this).offset().top;
+			dist = dist/_height;
 			dist = Math.round(dist*100)/100;
 			$(this).css('opacity', ''+dist);
 		});
@@ -116,8 +119,8 @@ $(document).ready(function() {
 
 	var cullStream = function(){
 		$('#postStream').children().each(function(){
-			var dist = docHeight - $(this).offset().top;
-			dist = dist/docHeight;
+			var dist = _docHeight - $(this).offset().top;
+			dist = dist/_docHeight;
 
 			if(dist < 0) {
 				$(this).remove();
