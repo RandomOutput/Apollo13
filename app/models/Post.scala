@@ -23,4 +23,8 @@ object Post {
 	def between(start: Long, end: Long): List[Post] = DB.withConnection { implicit c =>
 		SQL("SELECT * FROM transcript WHERE timecode >= " + start + " AND timecode < " + end).as(post *)
 	}
+
+	def numPostsBeforeTime(numPosts: Long, timecode: Long) : List[Post] = DB.withConnection { implicit c =>
+		SQL("SELECT * FROM transcript WHERE timecode <= " + timecode + " ORDER BY timecode DESC LIMIT " + numPosts).as(post *)
+	}
 }

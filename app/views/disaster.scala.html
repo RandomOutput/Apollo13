@@ -1,4 +1,4 @@
-@(posts: List[Post], currentMissionTime: Long)
+@(currentMissionTime: Long)
 @import helper._
 
 @main("Apollo 13 Redux", "stylesheets/disaster.css") {
@@ -30,12 +30,7 @@
                 </div>
                 <div id='feed'>
                     <ul id="postStream" data-init-time="@currentMissionTime">
-                        @posts.map { post =>
-                            <li id="post_@post.timecode">
-                                <div class='speaker'>@post.speaker</div>
-                                <div class='message'>@post.body</div>
-                            </li>
-                        }
+                        
                     </ul>
                 </div>
             </div>

@@ -11,6 +11,8 @@ GET		/stream 					controllers.Application.stream
 # JSON of stream data
 GET		/streambetween/:start/:end	controllers.Application.streamBetween(start: Long, end: Long)
 
+GET		/streambefore/:numPosts/:timecode	controllers.Application.streamBefore(numPosts: Long, timecode: Long)
+
 #About Page
 GET		/about						controllers.Application.about
 
