@@ -9,13 +9,12 @@ $(document).ready(function() {
 	var _docHeight = $(document).height();
 
 	var defaultUpdateInterval = 60; //seconds
-	var defaultUpdateMargin = 10; //seconds
 	var nextUpdateMissionTime = 0;
 	var postQueue = []
 
 	$(window).resize(function(){
-		_width = $(window)._width();
-		_height = $(window)._height();
+		_width = $(window).width();
+		_height = $(window).height();
 	});
 
 	
@@ -29,7 +28,7 @@ $(document).ready(function() {
 		}
 		else {
 			urlString = _url_root+'/streambetween/' + _missionTime + '/' + (_missionTime + defaultUpdateInterval);
-			nextUpdateMissionTime = _missionTime + defaultUpdateInterval - defaultUpdateMargin;
+			nextUpdateMissionTime = _missionTime + defaultUpdateInterval;
 		}
 		
 		console.log(urlString);

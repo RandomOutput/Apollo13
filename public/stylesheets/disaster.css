@@ -66,14 +66,13 @@ body {
 }
 
 #mainlinks {
-	opacity: 0.3;
 	margin-top: 30px;
 }
 
 #leftNav li, a {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
-	color: #EEE;
+	color: #777;
 	text-decoration: none;
 	letter-spacing: 0.04em;
 	font-size: 20px;
@@ -82,6 +81,7 @@ body {
 
 #leftNav a:hover{
 	text-decoration: underline;
+	color: #ddd;
 }
 
 #events {

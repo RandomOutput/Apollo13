@@ -27,4 +27,9 @@ object Post {
 	def numPostsBeforeTime(numPosts: Long, timecode: Long) : List[Post] = DB.withConnection { implicit c =>
 		SQL("SELECT * FROM transcript WHERE timecode <= " + timecode + " ORDER BY timecode DESC LIMIT " + numPosts).as(post *)
 	}
+
+	def nextPostAfter(timecode: Long) : Post = DB.withConnection { implicit c => 
+		val postList = SQL("SELECT * FROM transcript WHERE timecode >= " + timecode + " ORDER BY timecode DESC LIMIT 1").as(post *)
+		postList(0)
+	}
 }

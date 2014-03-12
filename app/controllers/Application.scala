@@ -29,30 +29,36 @@ object Application extends Controller {
   	Ok(views.html.disaster(currentMissionTime))
   }
 
-  def speakersToNames(posts: List[Post]) = {
-    def name(post:Post) = { Post(post.timecode, speakerMap(post.speaker), post.body); }
-    posts.map(post => name(post));
+  def speakerToName(post: Post) : Post = {
+    Post(post.timecode, speakerMap(post.speaker), post.body)
   }
 
-  def postToJson(post: Post) = {
+  def postToJson(post: Post) : Map[String,JsValue] = {
   	Map("timecode" -> Json.toJson(post.timecode),
   		"speaker" -> Json.toJson(post.speaker),
   		"body" -> Json.toJson(post.body)
-  		)
+      )
   }
 
   def streamBetween(start: Long, end:Long) = Action {
-  	val posts = Post.between(start,end)
-    val namedPosts = speakersToNames(posts)
-  	val jsonPosts = namedPosts.map(post => postToJson(post))
+  	val posts : List[Post] = Post.between(start,end)
+    val namedPosts : List[Post] = posts.map(speakerToName)
+    val jsonPosts = namedPosts.map(postToJson)
   	Ok(Json.toJson(jsonPosts))
   }
 
   def streamBefore(numPosts: Long, timecode:Long) = Action {
     val posts = Post.numPostsBeforeTime(numPosts, timecode)
-    val namedPosts = speakersToNames(posts)
-    val jsonPosts = namedPosts.map(post => postToJson(post))
+    val namedPosts = posts.map(speakerToName)
+    val jsonPosts = namedPosts.map(postToJson)
     Ok(Json.toJson(jsonPosts))
+  }
+
+  def nextPost(timecode: Long) = Action {
+    val post = Post.nextPostAfter(timecode)
+    val namedPost = speakerToName(post)
+    val jsonPost = postToJson(namedPost)
+    Ok(Json.toJson(jsonPost))
   }
 
   def event(event:String) = Action {
