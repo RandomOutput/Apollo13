@@ -29,7 +29,7 @@ object Post {
 	}
 
 	def nextPostAfter(timecode: Long) : Post = DB.withConnection { implicit c => 
-		val postList = SQL("SELECT * FROM transcript WHERE timecode >= " + timecode + " ORDER BY timecode DESC LIMIT 1").as(post *)
+		val postList = SQL("SELECT * FROM transcript WHERE timecode >= " + timecode + " ORDER BY timecode ASC LIMIT 1").as(post *)
 		postList(0)
 	}
 }

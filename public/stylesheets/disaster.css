@@ -84,6 +84,31 @@ body {
 	color: #ddd;
 }
 
+#nextTransmissionTime {
+	color: #ddd;
+	font-family: 'franklin_gothic_fsdemi';
+	font-size: 14px;
+	margin-top: 5px;
+	margin-left: 5px;
+	letter-spacing: 2px;
+}
+
+.visible {
+	visibility: visible;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.fadingIn {
+	visibility: visible;
+}
+
+.fadingOut {
+	visibility: visible;
+}
+
 #events {
 	font-size: 10px;
 	margin-top: -20px;

@@ -13,6 +13,8 @@ GET		/streambetween/:start/:end	controllers.Application.streamBetween(start: Lon
 
 GET		/streambefore/:numPosts/:timecode	controllers.Application.streamBefore(numPosts: Long, timecode: Long)
 
+GET 	/nextpost/:timecode			controllers.Application.nextPost(timecode: Long)
+
 #About Page
 GET		/about						controllers.Application.about
 
