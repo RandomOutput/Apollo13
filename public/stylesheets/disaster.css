@@ -85,12 +85,12 @@ body {
 }
 
 #nextTransmissionTime {
-	color: #ddd;
-	font-family: 'franklin_gothic_fsdemi';
-	font-size: 14px;
+	font-family: 'franklin_gothic_fsbook';
 	margin-top: 5px;
 	margin-left: 5px;
-	letter-spacing: 2px;
+	font-size: 14px;
+	letter-spacing: 0.2em;
+	color: #ddd;
 }
 
 .visible {

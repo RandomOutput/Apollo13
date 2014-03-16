@@ -49,7 +49,7 @@ $(document).ready(function() {
 		else {
 			urlString = _url_root+'/nextpost/' + _missionTime;
 			_nextPost = $.getJSON(urlString, function(data) {
-				return data;
+				_nextPost = data;
 			});
 		}
 	}
@@ -62,6 +62,7 @@ $(document).ready(function() {
 	 function manageNextTransmissionAlert() {
 	 	if(_nextPost !== undefined) {
 	 		var diff = _nextPost.timecode - _missionTime;
+	 		console.log("diff",diff);
 
 	 		$('#nextTransmissionTime').text("Next expected transmission in: T-" + secondsToDateString(diff));
 
@@ -70,14 +71,17 @@ $(document).ready(function() {
 	 			$('#nextTransmissionTime').addClass('visible');
 	 		}
 	 	}
+	 	else {
+	 		console.log("next post undefined");
+	 	}
 	 }
 
 	 /*
 	  * Check if the next transmission time alert should be hidden and excecute.
 	  */
 	function checkHideNextTransmissionTime() {
-		if(_lastPost !== undefined && _nextPost !== undefined) {
-	 		var diff = _nextPost.timecode - _lastPost.timecode;
+		if(_nextPost !== undefined) {
+	 		var diff = _nextPost.timecode - _missionTime;
 	 		if($('#nextTransmissionTime').hasClass('visible') && diff < 8) {
 	 			$('#nextTransmissionTime').removeClass('visible');
 	 			$('#nextTransmissionTime').addClass('hidden');
