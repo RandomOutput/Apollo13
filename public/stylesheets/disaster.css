@@ -29,9 +29,9 @@ body {
 
 #centeredContainter {
 	position: relative;
-	width: 70%;
+	width: 80%;
 	height: 500px;
-	max-width: 768px;
+	max-width: 900px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10px;
@@ -59,23 +59,27 @@ body {
 	vertical-align: top;
 	display: table-cell;
 	width: 216px;
+	background-color: rgba(0,0,0,0.6);
+	border-width: 20px;
+	border-color: rgba(0,0,0,0.0);
+	border-style: solid;
+
 }
 
 #logo {
-	opacity: 0.5;
 }
 
 #mainlinks {
 	margin-top: 30px;
+	font-size: 20px;
 }
 
 #leftNav li, a {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 100;
-	color: #777;
+	color: #bbb;
 	text-decoration: none;
 	letter-spacing: 0.04em;
-	font-size: 20px;
 	margin-bottom: 30px;
 }
 
@@ -86,7 +90,7 @@ body {
 
 #nextTransmissionTime {
 	font-family: 'franklin_gothic_fsbook';
-	margin-top: 5px;
+	margin-top: 8px;
 	margin-left: 5px;
 	font-size: 14px;
 	letter-spacing: 0.2em;
@@ -114,10 +118,30 @@ body {
 	margin-top: -20px;
 }
 
+#earthLayer {
+	position: absolute;
+	left:0px;
+	top:0px;
+	width: 100%;
+	height: 100%;
+	pointer-events:none;
+}
+
+#earth {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: -100px;
+	top: -50px;
+	background-image: url('../images/earth.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 #events li {
 	margin-left: 20px;
-	margin-bottom: 10px;
-	font-size: 10px;
+	margin-bottom: 12px;
+	font-size: 15px;
 }
 
 #feedContent {
@@ -127,13 +151,20 @@ body {
 	width: 100%;
 }
 
+#feedWrapper {
+	background-color: rgba(0,0,0,0.6);
+	border-width: 20px;
+	border-color: rgba(0,0,0,0.0);
+	border-style: solid;
+}
+
 #feedHeader{
 	width: 100%;
 	color: #fff;
 	text-align: justify;
 }
 
-#currentMissionTime {
+#currentPageTime {
 	float: left;
 	font-family: 'franklin_gothic_fsbook';
 	margin-bottom: 3px;
@@ -141,6 +172,12 @@ body {
 	font-size: 14px;
 	letter-spacing: 0.2em;
 	color: #ddd;
+}
+
+#real_timecode {
+	margin-left: 17px;
+	font-weight: bold;
+	font-size: 13px;
 }
 
 #feedSource {
@@ -175,6 +212,8 @@ body {
 	height: 159px;
 	z-index: 9999;
 	background-image: url('../images/disaster_ship.png');
+	-webkit-transform: scale(0.75);
+	transform: scale(0.75);
 }
 
 .speaker {
@@ -191,7 +230,6 @@ body {
 	font-size: 16px;
 	letter-spacing: 0.09em;
 	line-height: 30px;
-	opacity: 0.8;
 }
 
 body {
@@ -206,6 +244,5 @@ ul {
 li {
 	list-style: none;
 	margin-bottom: 15px;
-	opacity: 0.9;
 }
 

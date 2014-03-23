@@ -3,6 +3,7 @@ $(document).ready(function() {
 	var _currTime = Math.round(new Date().getTime() / 1000);
 	var _lastTime = _currTime;
 	var _missionTime = $('#postStream').data('init-time');
+	var _realTime = $('#postStream').data('real-time');
 	var _url_root = 'http://localhost:9000'
 	var _width = $(window).width();
 	var _height = $(window).height();
@@ -51,6 +52,8 @@ $(document).ready(function() {
 			_nextPost = $.getJSON(urlString, function(data) {
 				_nextPost = data;
 			});
+
+			return _nextPost;
 		}
 	}
 
@@ -62,7 +65,10 @@ $(document).ready(function() {
 	 function manageNextTransmissionAlert() {
 	 	if(_nextPost !== undefined) {
 	 		var diff = _nextPost.timecode - _missionTime;
+	 		console.log("next",_nextPost);
 	 		console.log("diff",diff);
+
+	 		if(diff < 0) { _nextPost = getNextPost(); }
 
 	 		$('#nextTransmissionTime').text("Next expected transmission in: T-" + secondsToDateString(diff));
 
@@ -133,9 +139,11 @@ $(document).ready(function() {
 		_currTime = Math.round(new Date().getTime() / 1000);
 		deltaTime = _currTime - _lastTime;
 		_missionTime += deltaTime;
+		_realTime += deltaTime;
 		_lastTime = _currTime;
 
-		$('#currentMissionTime').text("T+" + secondsToDateString(_missionTime));
+		$('#currentPageTime').text("T+" + secondsToDateString(_missionTime));
+		$('#real_timecode').text("T+"+ secondsToDateString(_realTime));
 	}
 
 	function secondsToDateString(timeInSeconds) {

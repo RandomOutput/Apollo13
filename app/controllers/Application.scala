@@ -26,7 +26,7 @@ object Application extends Controller {
   	val currentMissionTime = controllers.Helpers.getMissionTimestamp(Global.mission_start)
     val posts = Post.between(0,currentMissionTime).reverse
 
-  	Ok(views.html.disaster(currentMissionTime))
+  	Ok(views.html.disaster(currentMissionTime, currentMissionTime))
   }
 
   def speakerToName(post: Post) : Post = {
@@ -48,7 +48,7 @@ object Application extends Controller {
   }
 
   def streamBefore(numPosts: Long, timecode:Long) = Action {
-    val posts = Post.numPostsBeforeTime(numPosts, timecode)
+    val posts = Post.numPostsBeforeTime(numPosts, timecode).reverse
     val namedPosts = posts.map(speakerToName)
     val jsonPosts = namedPosts.map(postToJson)
     Ok(Json.toJson(jsonPosts))
@@ -62,8 +62,9 @@ object Application extends Controller {
   }
 
   def event(event:String) = Action {
+    val currentMissionTime = controllers.Helpers.getMissionTimestamp(Global.mission_start)
     val posts = Post.between(0,eventMap(event)).reverse
-    Ok(views.html.disaster(eventMap(event)))
+    Ok(views.html.disaster(eventMap(event), currentMissionTime))
   }
 
   def about = TODO
